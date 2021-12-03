@@ -1,10 +1,22 @@
 var arrImg = document.getElementsByTagName("figure");
 var imagecontainer = document.querySelector(".picture-group");
 var container = document.querySelector(".container");
+const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-window.addEventListener('load', add_animation)
+if (!mediaQuery || !mediaQuery.matches) {
+	add_animation();
+	window.addEventListener("scroll", add_animation);
+}
 
-window.addEventListener("scroll", add_animation)
+mediaQuery.addEventListener("change", function() {
+	if (mediaQuery.matches) {
+		window.removeEventListener("scroll", add_animation);
+	} 
+	else {
+		window.addEventListener("scroll", add_animation);
+	}
+  });
+
 
 function add_animation(){
     var top = document.documentElement.scrollTop || document.body.scrollTop;
