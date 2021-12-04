@@ -33,9 +33,10 @@ h1{
   top: 0px;
 }
 
-h2{
+h3, h2{
   font-size: 32px;
   line-height: 1.5;
+  text-align: center;
 }
 
 p{
@@ -46,7 +47,7 @@ nav ul{
   list-style-type: none;
   line-height: 30px;
   margin: 0;
-  width: 100%;
+  /* width: 100%; */
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -77,6 +78,11 @@ footer{
   color: white;
   padding: 5px;
   text-align: center;
+  margin:0;
+}
+
+footer h2{
+  font-size: 20px;
 }
 
 nav a{
@@ -97,14 +103,15 @@ a:hover {
 }
 
 header{
-  background-image: url("../images/chip.jpg");
-  background-position:center;
+  background-image: url("../images/circuit.jpg");
+  background-attachment: fixed; /* Parallax effect */
+  background-position: center; /* Parallax effect */
+  background-size: cover; /* Parallax effect */
+  background-repeat: no-repeat;
   background-color: LightSteelBlue;
-  background-size: cover;
-  background-repeat: no-repeat; 
   color: black;
   text-shadow: 0 0 10px white;
-  min-height: 300px;
+  height: 350px;
   font-weight: bolder;
 }
 
@@ -153,10 +160,19 @@ img{
   grid-column: 1 / -1;
   text-align: center;
   padding: 10px;
+
+  position: relative;
+  animation-name: fallin;
+  animation-duration: 2s;
 }
 
-.title h1{
+.title h2{
   font-size: 40px;
+}
+
+.title p{
+  width: 80%;
+  margin: 0 auto;
 }
 
 .second {
@@ -441,6 +457,11 @@ input[type=submit] {
 /* Tablet View */
 @media screen and (min-width: 641px){
 
+  nav ul{
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+  }
+
   .container{
     grid-template-columns: 1fr 16fr 1fr 16fr 1fr;
     grid-gap: 5px;
@@ -637,7 +658,7 @@ input[type=submit] {
     height: 375px;
   }
 
-  h3{
+  .flip-card-inner h3{
     font-size: 60px;
   }
 
@@ -662,7 +683,7 @@ input[type=submit] {
     height: 500px;
   }
 
-  .flip-card h3{
+  .flip-card-inner h3{
     margin: 30px 0;
   }
 
@@ -686,13 +707,31 @@ input[type=submit] {
   }
 }
 
+@keyframes fallin {
+  from {
+  	top: -150px;
+  }
+  to {
+  	top: 0px;
+  }
+}
+
 @media all and (prefers-reduced-motion: reduce){
   html{
     scroll-behavior: auto; 
   }
+
   .skip a{
     -webkit-transition: initial; 
     transition: initial; 
+  }
+
+  header{
+    background-attachment: initial;
+  }
+
+  .title {
+    animation: none;
   }
 
   figure {
@@ -743,6 +782,8 @@ input[type=submit] {
 
 }
 
+/* Set property for tablet view with reduced motion, mainly properties of flip card */
+
 @media all and (prefers-reduced-motion: reduce) and (min-width: 641px){
   .flip-card-inner {
     display: grid;
@@ -767,6 +808,8 @@ input[type=submit] {
     font-size: 16px
   }
 }
+
+/* Set property for desktop view with reduced motion, mainly properties of flip card */
 
 @media all and (prefers-reduced-motion: reduce) and (min-width: 1008px){
 
